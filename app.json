@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "bov-checklist",
+    "slug": "bov-checklist",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
