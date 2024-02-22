@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "bov-checklist",
+    "name": "Bov Checklist",
     "slug": "bov-checklist",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "backgroundColor": "#FFFFFF"
+    }
   }
 }
