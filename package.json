@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "expo": "watchman watch-del-all && clear && npx expo start -c",
+    "start": "watchman watch-del-all && clear && npx react-native start --reset-cache",
+    "android": "clear && npx react-native run-android",
+    "ios": "clear && npx react-native run-ios",
     "web": "expo start --web"
   },
   "dependencies": {
