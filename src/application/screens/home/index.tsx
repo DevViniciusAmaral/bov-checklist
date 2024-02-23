@@ -4,6 +4,10 @@ import { useNetInfo } from "@react-native-community/netinfo";
 // COMPONENTS
 import { Layout } from "../../components/layout";
 import { HeaderHome } from "./components/header";
+// import { FlatList } from "react-native";
+import { Divider } from "./styles";
+import { FlatList } from "./styles";
+import { FarmCard } from "./components/farm-card";
 
 export const Home = () => {
   const netInfo = useNetInfo();
@@ -23,7 +27,12 @@ export const Home = () => {
         />
       }
     >
-      <></>
+      <FlatList
+        data={[1, 2, 3]}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({ item }) => <FarmCard />}
+        ItemSeparatorComponent={() => <Divider />}
+      />
     </Layout>
   );
 };
