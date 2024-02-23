@@ -1,18 +1,18 @@
 import React from "react";
+import { images } from "../../assets/images";
+import { HeaderFarmDetails } from "./components/header";
+import { StackRootProps } from "../../routes/StackRootProps";
 import {
   Card,
-  Container,
-  DeleteButton,
-  DeleteTextButton,
-  Footer,
-  IconContainer,
-  IconImage,
   Label,
+  Footer,
+  Container,
+  IconImage,
+  DeleteButton,
+  IconContainer,
+  DeleteTextButton,
   VerticalContainer,
 } from "./styles";
-import { StackRootProps } from "../../routes/StackRootProps";
-import { HeaderFarmDetails } from "./components/header";
-import { images } from "../../assets/images";
 
 export const FarmDetails = ({
   route,
