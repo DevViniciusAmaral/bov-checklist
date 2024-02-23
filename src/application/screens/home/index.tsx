@@ -5,12 +5,17 @@ import { useNetInfo } from "@react-native-community/netinfo";
 import { Layout } from "../../components/layout";
 import { HeaderHome } from "./components/header";
 // import { FlatList } from "react-native";
-import { Divider } from "./styles";
+import { Divider, FloatButton } from "./styles";
 import { FlatList } from "./styles";
 import { FarmCard } from "./components/farm-card";
+import { Plus } from "lucide-react-native";
+import { useTheme } from "styled-components";
+import { StackRootProps } from "../../routes/StackRootProps";
 
-export const Home = () => {
+export const Home = ({ navigation }: StackRootProps<"Home">) => {
+  const theme = useTheme();
   const netInfo = useNetInfo();
+
   const [isConnected, setIsConnected] = useState(netInfo?.isConnected ?? true);
 
   const [searchValue, setSearchValue] = useState("");
@@ -33,6 +38,10 @@ export const Home = () => {
         renderItem={({ item }) => <FarmCard data={item} />}
         ItemSeparatorComponent={() => <Divider />}
       />
+
+      <FloatButton onPress={() => navigation.navigate("HandleFarm")}>
+        <Plus size={24} color={theme.colors.primary} />
+      </FloatButton>
     </Layout>
   );
 };
