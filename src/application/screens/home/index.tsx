@@ -30,7 +30,7 @@ export const Home = () => {
       <FlatList
         data={[1, 2, 3]}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={({ item }) => <FarmCard />}
+        renderItem={({ item }) => <FarmCard data={item} />}
         ItemSeparatorComponent={() => <Divider />}
       />
     </Layout>

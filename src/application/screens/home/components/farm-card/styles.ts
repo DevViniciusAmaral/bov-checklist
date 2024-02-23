@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { Text } from "../../../../components/base/text";
 import { PixelRatio } from "react-native";
+import { Button } from "../../../../components/button";
 
 interface LabelProps {
   secondary?: boolean;
@@ -11,7 +12,7 @@ interface VerticalContainerProps {
   alignRight?: boolean;
 }
 
-export const Container = styled.View`
+export const Container = styled(Button)`
   padding: 16px 0px;
   flex-direction: row;
   align-items: center;

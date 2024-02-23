@@ -8,12 +8,18 @@ import {
   VerticalContainer,
   HorizontalContainer,
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
-export const FarmCard = () => {
+interface FarmCardProps {
+  data: any;
+}
+
+export const FarmCard = ({ data }: FarmCardProps) => {
   const theme = useTheme();
+  const { navigate } = useNavigation();
 
   return (
-    <Container>
+    <Container onPress={() => navigate("FarmDetails", { id: "" })}>
       <VerticalContainer>
         <Label>Nome da fazenda</Label>
         <Label secondary>Nome do fazendeiro</Label>
