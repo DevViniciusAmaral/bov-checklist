@@ -1,4 +1,4 @@
-rootProject.name = 'bovchecklist'
+rootProject.name = 'Bov Checklist'
 
 dependencyResolutionManagement {
   versionCatalogs {

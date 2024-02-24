@@ -1,4 +1,4 @@
-package com.bovchecklist
+package com.viniciusamaral.bovchecklist
 
 import android.os.Build
 import android.os.Bundle

@@ -3,9 +3,24 @@
     "name": "Bov Checklist",
     "slug": "bov-checklist",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "splash": {
       "backgroundColor": "#FFFFFF"
+    },
+    "web": {
+      "cors": {
+        "origins": [
+          "*"
+        ]
+      }
+    },
+    "android": {
+      "package": "com.viniciusamaral.bovchecklist"
+    },
+    "ios": {
+      "bundleIdentifier": "com.viniciusamaral.bovchecklist"
     }
   }
 }

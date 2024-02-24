@@ -12,6 +12,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1AF9615FF6FD46E4BC4F5B3D /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B75649FF5BF249A19CF19D37 /* Inter-Bold.ttf */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
+		5B6331D7F3964B9ABF4DA7ED /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999A862D6EE34D8593C4BF37 /* noop-file.swift */; };
 		96905EF65AED1B983A6B3ABC /* libPods-bovchecklist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-bovchecklist.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0006D899D37B4ACEA1D3CF20 /* bovchecklist-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "bovchecklist-Bridging-Header.h"; path = "bovchecklist/bovchecklist-Bridging-Header.h"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* bovchecklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bovchecklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = bovchecklist/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = bovchecklist/AppDelegate.mm; sourceTree = "<group>"; };
@@ -31,6 +33,7 @@
 		6C2E3173556A471DD304B334 /* Pods-bovchecklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bovchecklist.debug.xcconfig"; path = "Target Support Files/Pods-bovchecklist/Pods-bovchecklist.debug.xcconfig"; sourceTree = "<group>"; };
 		75C6BEB369BE42E98907F12F /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-bovchecklist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bovchecklist.release.xcconfig"; path = "Target Support Files/Pods-bovchecklist/Pods-bovchecklist.release.xcconfig"; sourceTree = "<group>"; };
+		999A862D6EE34D8593C4BF37 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "bovchecklist/noop-file.swift"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = bovchecklist/SplashScreen.storyboard; sourceTree = "<group>"; };
 		B75649FF5BF249A19CF19D37 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
@@ -60,6 +63,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
+				999A862D6EE34D8593C4BF37 /* noop-file.swift */,
+				0006D899D37B4ACEA1D3CF20 /* bovchecklist-Bridging-Header.h */,
 			);
 			name = bovchecklist;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
+				5B6331D7F3964B9ABF4DA7ED /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = bovchecklist/BovChecklist.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -354,10 +361,12 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.bovchecklist;
-				PRODUCT_NAME = bovchecklist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.viniciusamaral.bovchecklist;
+				PRODUCT_NAME = BovChecklist;
+				SWIFT_OBJC_BRIDGING_HEADER = "bovchecklist/bovchecklist-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -368,6 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = bovchecklist/BovChecklist.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = bovchecklist/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
@@ -379,9 +389,11 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = org.name.bovchecklist;
-				PRODUCT_NAME = bovchecklist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.viniciusamaral.bovchecklist;
+				PRODUCT_NAME = BovChecklist;
+				SWIFT_OBJC_BRIDGING_HEADER = "bovchecklist/bovchecklist-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

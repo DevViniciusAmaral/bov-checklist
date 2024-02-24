@@ -1,16 +1,17 @@
+import { FlatList } from "./styles";
 import React, { useState } from "react";
+import { Plus } from "lucide-react-native";
+import { Divider, FloatButton } from "./styles";
+import { StackRootProps } from "../../routes/StackRootProps";
+
+// HOOKS
+import { useTheme } from "styled-components";
 import { useNetInfo } from "@react-native-community/netinfo";
 
 // COMPONENTS
 import { Layout } from "../../components/layout";
 import { HeaderHome } from "./components/header";
-// import { FlatList } from "react-native";
-import { Divider, FloatButton } from "./styles";
-import { FlatList } from "./styles";
 import { FarmCard } from "./components/farm-card";
-import { Plus } from "lucide-react-native";
-import { useTheme } from "styled-components";
-import { StackRootProps } from "../../routes/StackRootProps";
 
 export const Home = ({ navigation }: StackRootProps<"Home">) => {
   const theme = useTheme();
