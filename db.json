@@ -1,4 +1,29 @@
 {
-  "farms": [],
+  "farms": [
+    {
+      "id": "248b56ea-4104-4312-ace6-58a134773c1d",
+      "name": "Fazenda Feliz",
+      "farmer": "Joao Alberto",
+      "city": "Sao Paulo",
+      "createdAt": "Mon Feb 26 2024 10:01:07 GMT-0300",
+      "updatedAt": "Mon Feb 26 2024 10:21:13 GMT-0300"
+    },
+    {
+      "id": "248b56ea-4104-4312-ace6-58a134773c1d",
+      "name": "Fazenda do Augustinho",
+      "farmer": "Augusto Nunes",
+      "city": "Minas Gerais",
+      "createdAt": "Mon Feb 20 2024 10:01:07 GMT-0300",
+      "updatedAt": "Mon Feb 20 2024 10:14:39 GMT-0300"
+    },
+    {
+      "id": "484d3938-58ef-46c4-8521-1bfab1bc280a",
+      "name": "Fazenda Bastiao",
+      "farmer": "Jose Sebastiao",
+      "city": "Rio Grande do Sul",
+      "createdAt": "Mon Feb 26 2024 10:20:40 GMT-0300",
+      "updatedAt": "Mon Feb 26 2024 10:35:46 GMT-0300"
+    }
+  ],
   "checklists": []
 }

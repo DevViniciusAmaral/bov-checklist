@@ -3,13 +3,18 @@ import MainNavigator from "./routes";
 import { theme } from "../application/theme";
 import { ThemeProvider } from "styled-components";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <MainNavigator />
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <MainNavigator />
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }

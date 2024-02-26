@@ -1,6 +1,7 @@
 export interface IFarm {
   id?: string;
   name: string;
+  city: string;
   farmer: string;
   toUpload?: boolean;
   toUpdate?: boolean;

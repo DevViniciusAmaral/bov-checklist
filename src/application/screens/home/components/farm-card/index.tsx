@@ -1,35 +1,42 @@
 import React from "react";
 import { useTheme } from "styled-components";
 import { Button } from "../../../../components/button";
-import { ArrowRight, Trash2 } from "lucide-react-native";
+import { useNavigation } from "@react-navigation/native";
+import { ArrowRight, Edit, Trash2 } from "lucide-react-native";
+import { IFarm } from "@/infrastructure/services/farm/models/IFarm";
 import {
   Label,
   Container,
   VerticalContainer,
   HorizontalContainer,
 } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 interface FarmCardProps {
-  data: any;
+  data: IFarm;
+  handleEdit: (id: string) => void;
+  handleDelete: (id: string) => void;
 }
 
-export const FarmCard = ({ data }: FarmCardProps) => {
+export const FarmCard = ({ data, handleEdit, handleDelete }: FarmCardProps) => {
   const theme = useTheme();
   const { navigate } = useNavigation();
 
   return (
-    <Container onPress={() => navigate("FarmDetails", { id: "" })}>
+    <Container onPress={() => navigate("FarmDetails", { id: data.id })}>
       <VerticalContainer>
-        <Label>Nome da fazenda</Label>
-        <Label secondary>Nome do fazendeiro</Label>
+        <Label>{data.name}</Label>
+        <Label secondary>{data.farmer}</Label>
       </VerticalContainer>
 
       <VerticalContainer alignRight enableGap>
-        <Label secondary>Cidade</Label>
+        <Label secondary>{data.city}</Label>
 
         <HorizontalContainer>
-          <Button>
+          <Button onPress={() => handleEdit(data.id)}>
+            <Edit size={20} color={theme.colors.secondary} />
+          </Button>
+
+          <Button onPress={() => handleDelete(data.id)}>
             <Trash2 size={20} color={theme.colors.alert} />
           </Button>
 

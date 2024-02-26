@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import { z } from "zod";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { HeaderHandleFarm } from "./components/header";
+import { InputForm } from "../../components/input-form";
+import { StackRootProps } from "../../routes/StackRootProps";
 import {
-  Container,
-  Footer,
-  InputContainer,
   Label,
+  Footer,
+  Container,
   SaveButton,
+  InputContainer,
   SaveTextButton,
 } from "./styles";
-import { HeaderHandleFarm } from "./components/header";
-import { StackRootProps } from "../../routes/StackRootProps";
-import { InputForm } from "../../components/input-form";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useFarm } from "@/application/hooks/farm";
+import { IFarm } from "@/infrastructure/services/farm/models/IFarm";
+
+interface IUpdateFarm {
+  id: string;
+  value: IFarm;
+}
 
 export const HandleFarm = ({
   route,
@@ -20,17 +28,28 @@ export const HandleFarm = ({
 }: StackRootProps<"HandleFarm">) => {
   const id = route.params?.id;
 
+  const { farms, createFarm, updateFarm } = useFarm();
+
+  const farm = farms.find((farm) => farm?.id === id);
+
+  const createFarmMutation = useMutation<void, any, IFarm>({
+    mutationKey: ["createFarm"],
+    mutationFn: (value) => createFarm(value),
+  });
+
+  const updateFarmMutation = useMutation<void, any, IUpdateFarm>({
+    mutationKey: ["createFarm"],
+    mutationFn: ({ id, value }) => updateFarm(id, value),
+  });
+
   const screenTitle = `${id ? "Editar" : "Novo"} registro`;
 
   const requiredField = { required_error: "Obrigatório" };
 
   const schema = z.object({
-    farm: z.string(requiredField),
-    farmer: z.string(requiredField),
-    city: z.string(requiredField),
-    amountMilk: z.string(requiredField),
-    amountCattle: z.string(requiredField),
-    supervisor: z.string(requiredField),
+    name: z.string(requiredField).default(farm?.name),
+    farmer: z.string(requiredField).default(farm?.farmer),
+    city: z.string(requiredField).default(farm?.city),
   });
 
   type FormData = z.infer<typeof schema>;
@@ -42,39 +61,34 @@ export const HandleFarm = ({
     handleSubmit,
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const { farm, farmer, city, amountMilk, amountCattle, supervisor } = watch();
-
-  const saveButtonIsActive =
-    !!farm &&
-    !!farmer &&
-    !!city &&
-    !!amountMilk &&
-    !!amountCattle &&
-    !!supervisor;
+  const { name, farmer, city } = watch();
+  const saveButtonIsActive = !!farm || (!!name && !!farmer && !!city);
 
   const inputs = [
-    { name: "farm", label: "Fazenda", placeholder: "Nome da fazenda" },
-    { name: "farmer", label: "Fazendeiro", placeholder: "Nome do fazendeiro" },
-    { name: "city", label: "Cidade", placeholder: "Nome da cidade" },
     {
-      name: "amountMilk",
-      label: "Quantidade de leite do mês corrente",
-      placeholder: "0",
+      name: "name",
+      label: "Fazenda",
+      placeholder: "Nome da fazenda",
+      defaultValue: farm?.name,
     },
     {
-      name: "amountCattle",
-      label: "Quantidade de cabeça de gado",
-      placeholder: "0",
+      name: "farmer",
+      label: "Fazendeiro",
+      placeholder: "Nome do fazendeiro",
+      defaultValue: farm?.farmer,
     },
     {
-      name: "supervisor",
-      label: "Supervisor",
-      placeholder: "Nome do supervisor",
+      name: "city",
+      label: "Cidade",
+      placeholder: "Nome da cidade",
+      defaultValue: farm?.city,
     },
   ];
 
-  const handleSubmitForm = (values: FormData) => {
-    console.log(JSON.stringify(values, null, 2));
+  const handleSubmitForm = async (value: FormData) => {
+    if (farm) await updateFarmMutation.mutateAsync({ id, value } as IUpdateFarm);
+    else await createFarmMutation.mutateAsync(value as IFarm);
+    navigation.goBack();
   };
 
   return (
@@ -93,16 +107,10 @@ export const HandleFarm = ({
         </Footer>
       }
     >
-      {inputs.map(({ name, label, placeholder }, index) => (
+      {inputs.map(({ label, ...rest }, index) => (
         <InputContainer key={index}>
           <Label>{label}</Label>
-
-          <InputForm
-            name={name}
-            control={control}
-            error={errors[name]}
-            placeholder={placeholder}
-          />
+          <InputForm {...rest} control={control} error={errors[name]} />
         </InputContainer>
       ))}
     </Container>

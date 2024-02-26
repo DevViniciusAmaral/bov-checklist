@@ -9,6 +9,9 @@ import { useNetInfo } from "@react-native-community/netinfo";
 export const useFarm = () => {
   const store = useFarmStore();
   const { isConnected } = useNetInfo();
+  // const isConnected = false;
+
+  const farmList = store.farms.filter((farm) => !farm.toDelete);
 
   const createFarm = async (value: IFarm) => {
     try {
@@ -118,5 +121,11 @@ export const useFarm = () => {
     }
   };
 
-  return { createFarm, syncFarms, updateFarm, deleteFarm };
+  return {
+    farms: farmList,
+    createFarm,
+    syncFarms,
+    updateFarm,
+    deleteFarm,
+  };
 };

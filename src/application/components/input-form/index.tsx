@@ -42,7 +42,6 @@ export const InputForm = ({
   endIcon,
   startIcon,
   labelStyle,
-  defaultValue,
   containerStyle,
   onPress,
   ...rest

@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { useTheme } from "styled-components";
 import { Button } from "../../../../components/button";
 import { Calendar, WifiOff } from "lucide-react-native";
+import { SearchBar } from "../../../../components/search-bar";
+import { SwitchButton } from "../../../../components/switch-button";
 import {
   Label,
   Container,
   ImageProfile,
   ProfileContainer,
-  HorizontalContainer,
   HorizontalWrapper,
+  HorizontalContainer,
 } from "./styles";
-import { SearchBar } from "../../../../components/search-bar";
-import { SwitchButton } from "../../../../components/switch-button";
 
 interface HeaderHomeProps {
   wifiIsEnabled?: boolean;
-  handleChangeDate: () => void;
+  // handleChangeDate: () => void;
   handlePressWifiButton: () => void;
   handleSearch: (value: string) => void;
 }
@@ -23,7 +23,7 @@ interface HeaderHomeProps {
 export const HeaderHome = ({
   wifiIsEnabled = true,
   handleSearch,
-  handleChangeDate,
+  // handleChangeDate,
   handlePressWifiButton,
 }: HeaderHomeProps) => {
   const theme = useTheme();
@@ -60,15 +60,15 @@ export const HeaderHome = ({
             <WifiOff size={20} color={wifiIconColor} />
           </Button>
 
-          <Button onPress={handleChangeDate}>
+          {/* <Button onPress={handleChangeDate}>
             <Calendar size={20} color={theme.colors.primaryDark} />
-          </Button>
+          </Button> */}
         </HorizontalContainer>
       </HorizontalWrapper>
 
       <SearchBar placeholder="Pesquisar" onChangeText={handleSearch} />
 
-      <SwitchButton options={switchOptions} handleChange={handleSwitchButton} />
+      {/* <SwitchButton options={switchOptions} handleChange={handleSwitchButton} /> */}
     </Container>
   );
 };
