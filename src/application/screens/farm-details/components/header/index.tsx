@@ -10,13 +10,18 @@ import {
 import { Button } from "../../../../components/button";
 import { ArrowLeft, SquarePen } from "lucide-react-native";
 import { useTheme } from "styled-components";
+import { formatDate } from "@/application/utils/Date";
 
 interface HeaderFarmDetailsProps {
+  name: string;
+  lastUpdate: string;
   goBack: () => void;
   handleEdit: () => void;
 }
 
 export const HeaderFarmDetails = ({
+  name,
+  lastUpdate,
   goBack,
   handleEdit,
 }: HeaderFarmDetailsProps) => {
@@ -30,9 +35,10 @@ export const HeaderFarmDetails = ({
 
       <HorizontalContainer>
         <VerticalContainer>
-          <Title>Nome da fazenda</Title>
+          <Title>{name}</Title>
           <Label bold>
-            Última atualização: <Label>sábado 12 novembro 2022</Label>
+            Última atualização:{" "}
+            <Label>{formatDate(lastUpdate, "E, dd MMMM yyyy")}</Label>
           </Label>
         </VerticalContainer>
 

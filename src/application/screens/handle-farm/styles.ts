@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import { Layout } from "../../components/layout";
 import { Text } from "../../components/base/text";
-import { PixelRatio } from "react-native";
 import { Button } from "../../components/button";
 
 export const Container = styled(Layout).attrs({
@@ -11,7 +10,6 @@ export const Container = styled(Layout).attrs({
 })``;
 
 export const Label = styled(Text)`
-  font-size: ${PixelRatio.getFontScale() * 12}px;
   color: ${({ theme }) => theme.colors.primaryDark};
 `;
 

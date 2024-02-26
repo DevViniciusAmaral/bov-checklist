@@ -30,6 +30,7 @@ export const useFarm = () => {
   const syncDeletedFarms = async () => {
     try {
       const toDeleteFarms = store.farms.filter((farm) => farm.toDelete);
+      console.log("toDeleteFarms =>", toDeleteFarms.length);
       if (toDeleteFarms.length === 0) return;
 
       const local = toDeleteFarms.filter((farm) => farm.toUpload);
@@ -45,6 +46,7 @@ export const useFarm = () => {
   const syncUploadedFarms = async () => {
     try {
       const toUploadFarms = store.farms.filter((farm) => farm.toUpload);
+      console.log("toUploadFarms =>", toUploadFarms.length);
       if (toUploadFarms.length === 0) return;
 
       await Promise.allSettled(
@@ -60,6 +62,7 @@ export const useFarm = () => {
   const syncUpdatedFarms = async () => {
     try {
       const toUpdateFarms = store.farms.filter((farm) => farm.toUpdate);
+      console.log("toUpdateFarms =>", toUpdateFarms.length);
       if (toUpdateFarms.length === 0) return;
 
       await Promise.allSettled(
@@ -74,8 +77,6 @@ export const useFarm = () => {
 
   const syncFarms = async () => {
     try {
-      if (!isConnected) return;
-
       await syncDeletedFarms();
       await syncUploadedFarms();
       await syncUpdatedFarms();

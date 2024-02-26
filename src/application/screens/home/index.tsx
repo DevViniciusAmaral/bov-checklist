@@ -8,7 +8,7 @@ import { StackRootProps } from "../../routes/StackRootProps";
 import { useTheme } from "styled-components";
 import { useFarm } from "@/application/hooks/farm";
 import { useModalize } from "react-native-modalize";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useNetInfo } from "@react-native-community/netinfo";
 
 // COMPONENTS
@@ -16,23 +16,28 @@ import { Layout } from "../../components/layout";
 import { HeaderHome } from "./components/header";
 import { FarmCard } from "./components/farm-card";
 import { AddModal } from "./components/add-modal";
+import { useChecklist } from "@/application/hooks/checklist";
 
 export const Home = ({ navigation }: StackRootProps<"Home">) => {
   const theme = useTheme();
-  const netInfo = useNetInfo();
+  const { isConnected } = useNetInfo();
+
+  const { syncChecklists } = useChecklist();
+  const { farms, deleteFarm, syncFarms } = useFarm();
+
+  // useQuery({
+  //   queryKey: ["syncFarms"],
+  //   queryFn: () => isConnected && syncFarms,
+  // });
+
+  const { ref, open, close } = useModalize();
+
+  const [searchValue, setSearchValue] = useState("");
 
   const deleteFarmMutation = useMutation<any, void, string>({
     mutationKey: ["deleteFarm"],
     mutationFn: (id) => deleteFarm(id),
   });
-
-  const { farms, deleteFarm, syncFarms } = useFarm();
-
-  const { ref, open, close } = useModalize();
-
-  const [isConnected, setIsConnected] = useState(netInfo?.isConnected ?? true);
-
-  const [searchValue, setSearchValue] = useState("");
 
   const filteredFarms =
     searchValue?.length > 0
@@ -50,8 +55,8 @@ export const Home = ({ navigation }: StackRootProps<"Home">) => {
   };
 
   useEffect(() => {
-    (async () => await syncFarms())();
-  }, [netInfo?.isConnected]);
+    syncChecklists();
+  }, []);
 
   return (
     <>
@@ -61,7 +66,7 @@ export const Home = ({ navigation }: StackRootProps<"Home">) => {
           <HeaderHome
             wifiIsEnabled={isConnected}
             handleSearch={setSearchValue}
-            handlePressWifiButton={() => setIsConnected((value) => !value)}
+            handlePressWifiButton={() => {}}
           />
         }
       >

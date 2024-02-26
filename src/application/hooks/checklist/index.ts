@@ -26,14 +26,22 @@ export const useChecklist = () => {
 
   const syncDeletedChecklists = async () => {
     try {
-      const toDeleteChecklists = store.checklists.filter((checklist) => checklist.toDelete);
+      const toDeleteChecklists = store.checklists.filter(
+        (checklist) => checklist.toDelete
+      );
       if (toDeleteChecklists.length === 0) return;
 
-      const local = toDeleteChecklists.filter((checklist) => checklist.toUpload);
+      const local = toDeleteChecklists.filter(
+        (checklist) => checklist.toUpload
+      );
       if (local.length > 0) local.forEach(({ id }) => store.delete(id));
 
-      const online = toDeleteChecklists.filter((checklist) => !checklist.toUpload);
-      await Promise.allSettled(online.map(({ id }) => checklistService.delete(id)));
+      const online = toDeleteChecklists.filter(
+        (checklist) => !checklist.toUpload
+      );
+      await Promise.allSettled(
+        online.map(({ id }) => checklistService.delete(id))
+      );
     } catch (error) {
       console.log("Error SynDeletedChecklists =>", error);
     }
@@ -41,7 +49,9 @@ export const useChecklist = () => {
 
   const syncUploadedChecklists = async () => {
     try {
-      const toUploadChecklists = store.checklists.filter((checklist) => checklist.toUpload);
+      const toUploadChecklists = store.checklists.filter(
+        (checklist) => checklist.toUpload
+      );
       if (toUploadChecklists.length === 0) return;
 
       await Promise.allSettled(
@@ -56,13 +66,17 @@ export const useChecklist = () => {
 
   const syncUpdatedChecklists = async () => {
     try {
-      const toUpdateChecklists = store.checklists.filter((checklist) => checklist.toUpdate);
+      const toUpdateChecklists = store.checklists.filter(
+        (checklist) => checklist.toUpdate
+      );
       if (toUpdateChecklists.length === 0) return;
 
       await Promise.allSettled(
-        toUpdateChecklists.map(({ toDelete, toUpdate, toUpload, id, ...rest }) => {
-          return checklistService.update(id, { id, ...rest });
-        })
+        toUpdateChecklists.map(
+          ({ toDelete, toUpdate, toUpload, id, ...rest }) => {
+            return checklistService.update(id, { id, ...rest });
+          }
+        )
       );
     } catch (error) {
       console.log("Error syncUploadedChecklists =>", error);
@@ -71,16 +85,20 @@ export const useChecklist = () => {
 
   const syncChecklists = async () => {
     try {
-      if (!isConnected) return;
-
       await syncDeletedChecklists();
+      console.log("SYNC DELETED");
       await syncUploadedChecklists();
+      console.log("SYNC UPLOADED");
       await syncUpdatedChecklists();
+      console.log("SYNC UPDATED");
 
       const { data: checklists } = await checklistService.read();
+      console.log("CHECKLISTS =>", JSON.stringify(checklists, null, 2));
 
       store.deleteAll();
+      console.log("SORE DELETE ALL");
       checklists.forEach((checklist) => store.create(checklist));
+      console.log("SORE FOR EACH");
     } catch (error) {
       console.log(error);
     }
@@ -88,7 +106,9 @@ export const useChecklist = () => {
 
   const updateChecklist = async (id: string, value: IChecklist) => {
     try {
-      const checklist = store.checklists.find((checklist) => checklist.id === id);
+      const checklist = store.checklists.find(
+        (checklist) => checklist.id === id
+      );
 
       const updatedChecklist = {
         ...checklist,
@@ -107,7 +127,9 @@ export const useChecklist = () => {
 
   const deleteChecklist = async (id: string) => {
     try {
-      const checklist = store.checklists.find((checklist) => checklist.id === id);
+      const checklist = store.checklists.find(
+        (checklist) => checklist.id === id
+      );
 
       if (isConnected) {
         await checklistService.delete(id);
@@ -118,5 +140,11 @@ export const useChecklist = () => {
     }
   };
 
-  return { createChecklist, syncChecklists, updateChecklist, deleteChecklist };
+  return {
+    checklists: store.checklists,
+    createChecklist,
+    syncChecklists,
+    updateChecklist,
+    deleteChecklist,
+  };
 };

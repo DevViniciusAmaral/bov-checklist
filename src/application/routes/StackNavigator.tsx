@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Home } from "../screens/home";
 import { HandleFarm } from "../screens/handle-farm";
 import { FarmDetails } from "../screens/farm-details";
+import { HandleChecklist } from "../screens/handle-checklist";
 
 const Stack = createStackNavigator<StackParamList>();
 
@@ -15,6 +16,7 @@ export default function StackNavigator() {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="HandleFarm" component={HandleFarm} />
       <Stack.Screen name="FarmDetails" component={FarmDetails} />
+      <Stack.Screen name="HandleChecklist" component={HandleChecklist} />
     </Stack.Navigator>
   );
 }

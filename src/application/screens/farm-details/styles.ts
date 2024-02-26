@@ -12,8 +12,30 @@ interface LabelProps {
 export const Container = styled(Layout).attrs({
   scrollEnabled: true,
   paddingTopEnabled: true,
-  contentContainerStyle: { padding: 16 },
+  contentContainerStyle: { paddingHorizontal: 16, paddingBottom: 16 },
 })``;
+
+export const WrapperVertical = styled.View`
+  align-items: flex-end;
+`;
+
+export const HorizontalContainer = styled.View`
+  margin-top: 32px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Title = styled(Text)`
+  font-size: ${PixelRatio.getFontScale() * 16}px;
+  font-family: ${({ theme }) => theme.fonts.medium};
+`;
+
+export const Description = styled(Text)`
+  text-transform: capitalize;
+  font-size: ${PixelRatio.getFontScale() * 12}px;
+  color: ${({ theme }) => theme.colors.primaryDark};
+`;
 
 export const Card = styled.View`
   gap: 8px;

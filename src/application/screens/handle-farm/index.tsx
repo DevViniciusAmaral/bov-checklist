@@ -1,10 +1,8 @@
 import { z } from "zod";
 import React from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { HeaderHandleFarm } from "./components/header";
-import { InputForm } from "../../components/input-form";
 import { StackRootProps } from "../../routes/StackRootProps";
+import { IFarm } from "@/infrastructure/services/farm/models/IFarm";
 import {
   Label,
   Footer,
@@ -13,9 +11,15 @@ import {
   InputContainer,
   SaveTextButton,
 } from "./styles";
-import { useMutation } from "@tanstack/react-query";
+
+// COMPONENTS
+import { InputForm } from "../../components/input-form";
+import { Header } from "@/application/components/header";
+
+// HOOKS
+import { useForm } from "react-hook-form";
 import { useFarm } from "@/application/hooks/farm";
-import { IFarm } from "@/infrastructure/services/farm/models/IFarm";
+import { useMutation } from "@tanstack/react-query";
 
 interface IUpdateFarm {
   id: string;
@@ -42,7 +46,7 @@ export const HandleFarm = ({
     mutationFn: ({ id, value }) => updateFarm(id, value),
   });
 
-  const screenTitle = `${id ? "Editar" : "Novo"} registro`;
+  const screenTitle = `${id ? "Editar" : "Novo"} fazenda`;
 
   const requiredField = { required_error: "Obrigatório" };
 
@@ -94,7 +98,7 @@ export const HandleFarm = ({
   return (
     <Container
       header={
-        <HeaderHandleFarm title={screenTitle} goBack={navigation.goBack} />
+        <Header title={screenTitle} goBack={navigation.goBack} />
       }
       footer={
         <Footer>
